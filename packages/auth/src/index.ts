@@ -381,7 +381,7 @@ export function getAuth(config: AuthConfig) {
         create: {
           after: async (user) => {
             // Track user signup event
-            posthog?.capture({
+            posthog?.capture?.({
               distinctId: user.id,
               event: "user_sign_up",
               properties: {
