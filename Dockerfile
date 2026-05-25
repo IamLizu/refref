@@ -32,9 +32,17 @@ COPY packages ./packages
 # Run postinstall scripts now that source files are available
 RUN pnpm install --frozen-lockfile --filter @refref/webapp...
 
+# Build-time public URLs for Next.js client bundle
+ARG NEXT_PUBLIC_APP_URL
+ARG BETTER_AUTH_URL
+ARG NEXT_PUBLIC_ASSETS_URL
+
 # Build the webapp application (with placeholder env vars for build time)
 ENV DATABASE_URL="postgresql://placeholder"
 ENV BETTER_AUTH_SECRET="placeholder-secret-for-build"
+ENV NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+ENV BETTER_AUTH_URL=${BETTER_AUTH_URL}
+ENV NEXT_PUBLIC_ASSETS_URL=${NEXT_PUBLIC_ASSETS_URL}
 RUN pnpm build --filter @refref/webapp...
 
 # Production stage

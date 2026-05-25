@@ -7,12 +7,15 @@ import {
 } from "better-auth/client/plugins";
 import { env } from "@/env";
 
+const authBaseUrl =
+  typeof window !== "undefined" ? window.location.origin : env.NEXT_PUBLIC_APP_URL;
+
 /**
  * BetterAuth client setup with organization plugin for React components
  */
 export const authClient = createAuthClient({
-  // Base URL should match the server's baseURL
-  baseURL: env.NEXT_PUBLIC_APP_URL,
+  // In browser, always use current origin to avoid baked localhost URLs in production bundles.
+  baseURL: authBaseUrl,
 
   // Add the organization client plugin
   plugins: [

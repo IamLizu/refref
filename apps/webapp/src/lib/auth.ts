@@ -6,7 +6,7 @@ import { posthog } from "@/lib/posthog";
 
 // Create auth instance using the factory function from @refref/auth
 export const auth = getAuth({
-  baseURL: env.NEXT_PUBLIC_APP_URL,
+  baseURL: env.BETTER_AUTH_URL,
   resendApiKey: env.RESEND_API_KEY || "debug_key",
   db,
   schema,
@@ -21,6 +21,6 @@ export const auth = getAuth({
     : undefined,
   logger,
   posthog,
-  trustedOrigins: [env.NEXT_PUBLIC_APP_URL],
+  trustedOrigins: [env.NEXT_PUBLIC_APP_URL, env.BETTER_AUTH_URL],
   emailFrom: env.NOTIFICATIONS_EMAIL_FROM,
 });

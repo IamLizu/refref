@@ -32,6 +32,8 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const assetsBaseUrl = env.NEXT_PUBLIC_ASSETS_URL ?? env.NEXT_PUBLIC_APP_URL;
+
   return (
     <html
       lang="en"
@@ -41,7 +43,7 @@ export default function RootLayout({
       <head>
         <Script
           suppressHydrationWarning
-          src={`${env.NEXT_PUBLIC_ASSETS_URL}/attribution.v1.js`}
+          src={`${assetsBaseUrl}/attribution.v1.js`}
           strategy="afterInteractive"
         />
         <Script
@@ -55,7 +57,7 @@ export default function RootLayout({
         />
         <Script
           suppressHydrationWarning
-          src={`${env.NEXT_PUBLIC_ASSETS_URL}/widget.v1.js`}
+          src={`${assetsBaseUrl}/widget.v1.js`}
           strategy="afterInteractive"
         />
       </head>
